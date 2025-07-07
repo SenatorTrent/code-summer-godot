@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc6rp7gevpg4i"]
+[gd_scene load_steps=6 format=3 uid="uid://dc6rp7gevpg4i"]
 
 [ext_resource type="PackedScene" uid="uid://b0w2de2uv1ocx" path="res://character_body_2d.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://cdqqav3wir5qo" path="res://fly.png" id="2_fj7yv"]
+[ext_resource type="Script" uid="uid://dmkma0jw8hn3" path="res://fly.gd" id="2_tlwt5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(5817, 582)
@@ -49,6 +50,7 @@ zoom = Vector2(0.34, 0.34)
 
 [node name="Fly" type="CharacterBody2D" parent="."]
 position = Vector2(1566, -837)
+script = ExtResource("2_tlwt5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Fly"]
 scale = Vector2(3, 3)
