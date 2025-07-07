@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://diq18nbr218yq"]
+
+[ext_resource type="Texture2D" uid="uid://cxj2egw14gb8t" path="res://icon.svg" id="1_owmr1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm8ll"]
+size = Vector2(142, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7tq3a"]
+radius = 22.3607
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-327, -187)
+shape = SubResource("RectangleShape2D_vm8ll")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(-4, 0)
+scale = Vector2(1.21875, 0.148437)
+texture = ExtResource("1_owmr1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, 150)
+zoom = Vector2(1.53, 1.53)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-3, -5)
+shape = SubResource("CircleShape2D_7tq3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
+position = Vector2(4, 4)
+scale = Vector2(0.367188, 0.398438)
+texture = ExtResource("1_owmr1")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="RigidBody2D"]
+node_a = NodePath("../../StaticBody2D")
+node_b = NodePath("..")
+length = 100.0
+rest_length = 50.0
