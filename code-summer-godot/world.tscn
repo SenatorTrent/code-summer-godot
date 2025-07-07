@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc6rp7gevpg4i"]
+[gd_scene load_steps=6 format=3 uid="uid://dc6rp7gevpg4i"]
 
 [ext_resource type="PackedScene" uid="uid://b0w2de2uv1ocx" path="res://character_body_2d.tscn" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://cdqqav3wir5qo" path="res://fly.png" id="2_fj7yv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(5817, 582)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f3sb7"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fj7yv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
 
 [node name="world" type="Node2D"]
 
@@ -25,6 +26,24 @@ texture = SubResource("PlaceholderTexture2D_f3sb7")
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_f3sb7")]
 position = Vector2(-213, -1100)
 
+[node name="tongueSpring" type="DampedSpringJoint2D" parent="CharacterBody2D"]
+node_a = NodePath("..")
+node_b = NodePath("../../StaticBody2D")
+disable_collision = false
+length = 1002.0
+rest_length = 73.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -300)
 zoom = Vector2(0.34, 0.34)
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(1566, -837)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+scale = Vector2(19, 19)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_fj7yv")
