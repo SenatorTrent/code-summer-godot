@@ -23,6 +23,12 @@ texture = SubResource("PlaceholderTexture2D_f3sb7")
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_f3sb7")]
 position = Vector2(-148, -143)
 
+[node name="tongueSpring" type="DampedSpringJoint2D" parent="CharacterBody2D"]
+node_a = NodePath("..")
+node_b = NodePath("../../StaticBody2D")
+length = 1002.0
+rest_length = 73.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -300)
 zoom = Vector2(0.34, 0.34)
