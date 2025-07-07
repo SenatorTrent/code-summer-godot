@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0w2de2uv1ocx"]
 
-[ext_resource type="Texture2D" uid="uid://cxj2egw14gb8t" path="res://icon.svg" id="1_f50pn"]
+[ext_resource type="Texture2D" uid="uid://capuy0nk2s5do" path="res://frog.png" id="1_f50pn"]
 
 [sub_resource type="GDScript" id="GDScript_ij6vw"]
 script/source = "extends CharacterBody2D
@@ -40,6 +40,5 @@ scale = Vector2(7.985, 7.985)
 shape = SubResource("CapsuleShape2D_ghijl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -3.99999)
-scale = Vector2(1, 1.82813)
+position = Vector2(-4, -4)
 texture = ExtResource("1_f50pn")
