@@ -48,6 +48,22 @@ texture = SubResource("PlaceholderTexture2D_f3sb7")
 offset = Vector2(0, -300)
 zoom = Vector2(0.34, 0.34)
 
+[node name="Fly2" type="CharacterBody2D" parent="."]
+position = Vector2(2148, -1245)
+script = ExtResource("2_tlwt5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fly2"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_fj7yv")
+
+[node name="Fly3" type="CharacterBody2D" parent="."]
+position = Vector2(2290, -595)
+script = ExtResource("2_tlwt5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fly3"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_fj7yv")
+
 [node name="Fly" type="CharacterBody2D" parent="."]
 position = Vector2(1566, -837)
 script = ExtResource("2_tlwt5")
