@@ -31,14 +31,17 @@ func _physics_process(delta: float) -> void:
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ghijl"]
+radius = 46.7
+height = 93.6
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = SubResource("GDScript_ij6vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(7.985, 7.985)
+scale = Vector2(10, 10)
 shape = SubResource("CapsuleShape2D_ghijl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4, -4)
+scale = Vector2(5, 5)
 texture = ExtResource("1_f50pn")
