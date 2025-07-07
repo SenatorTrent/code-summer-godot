@@ -9,35 +9,41 @@ script/source = "extends CharacterBody2D
 
 var target = Vector2(0, 0)
 var grappled = false
-const SPEED = 400.0
+var tongueSpring
+const SPEED = 800.0
 const JUMP_VELOCITY = -800.0
-const GRAPPLE_SPEED = 200
+
+func _ready():
+	tongueSpring = get_node(\"tongueSpring\")
 
 func _input(event):
 	# Use is_action_pressed to only accept single taps as input instead of mouse drags.
 	if event is InputEventMouseButton:
-		target = get_global_mouse_position()
-		grappled  = true
+		if not grappled:
+			target = get_global_mouse_position()
+			grappled  = true
+		else:
+			grappled = false
+		
 
 func _physics_process(delta: float) -> void:
+	var directional_vec
 	if grappled:
 		#Raycast to mouse
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(position, target)
 		var result = space_state.intersect_ray(query)
-		#print(result)
-		
-		#Attach tongue to hit object
 		if result != {}:
-			var tongueHitPos = result[\"position\"]
-			var tongueHitNormal = result[\"normal\"]
-			velocity += tongueHitNormal * GRAPPLE_SPEED * delta
-			print(tongueHitNormal)
-			print(velocity)
-		
+			var intersection_position = result[\"position\"]
+			directional_vec = Vector2(intersection_position.x - position.x, intersection_position.y - position.y)
+			var m = sqrt(directional_vec.x*directional_vec.x + directional_vec.y*directional_vec.y)
+			directional_vec.x /= m
+			directional_vec.y /= m
+			print(directional_vec)
+			velocity += directional_vec * 10
 	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not grappled:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
@@ -52,8 +58,11 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
 	if direction:
-		velocity.x = direction * SPEED
-	else:
+		if not grappled:
+			velocity.x = direction * SPEED
+		if grappled:
+			velocity.x = direction * SPEED + directional_vec.x * 10
+	elif not grappled:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
@@ -62,15 +71,15 @@ func _physics_process(delta: float) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f50pn"]
 size = Vector2(66.9, 65.2)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D2" type="CharacterBody2D"]
 script = SubResource("GDScript_ij6vw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-16.5, -7)
 scale = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_f50pn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(-4, -4)
 scale = Vector2(5, 5)
 texture = ExtResource("1_f50pn")
