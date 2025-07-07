@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b0w2de2uv1ocx" path="res://character_body_2d.tscn" id="1_f3sb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
-size = Vector2(2339, 141)
+size = Vector2(5817, 582)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f3sb7"]
 
@@ -12,16 +12,16 @@ size = Vector2(2339, 141)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-4.5, 133.5)
+position = Vector2(-13.5, 377)
 shape = SubResource("RectangleShape2D_gv5m4")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(27, 136.5)
-scale = Vector2(2414, 139)
+position = Vector2(-20.5001, 375.5)
+scale = Vector2(5815, 571)
 texture = SubResource("PlaceholderTexture2D_f3sb7")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_f3sb7")]
-position = Vector2(-148, -143)
+position = Vector2(-213, -1100)
 
 [node name="tongueSpring" type="DampedSpringJoint2D" parent="CharacterBody2D"]
 node_a = NodePath("..")
